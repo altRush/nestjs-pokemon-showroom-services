@@ -5,10 +5,10 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ClientBase } from 'pg';
-import { HttpResponseMessage } from 'src/constants/http-response-messages.enums';
-import { IPokemonProfile } from 'src/interfaces/PokemonProfile.interface';
-import { IStorePokemonResponse } from 'src/interfaces/Store.interface';
-import { UtilsService } from 'src/utils/utils.service';
+import { HttpResponseMessage } from '../constants/http-response-messages.enums';
+import { IPokemonProfile } from '../interfaces/pokemon-profile.interface';
+import { IStorePokemonResponse } from '../interfaces/pokemon-store.interface';
+import { UtilsService } from '../utils/utils.service';
 
 @Injectable()
 export class PokemonStoreService {

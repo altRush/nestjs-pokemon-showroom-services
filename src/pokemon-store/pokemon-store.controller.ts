@@ -8,14 +8,14 @@ import {
   Post,
 } from '@nestjs/common';
 import { PokemonStoreService } from './pokemon-store.service';
-import { IPokemonProfile } from 'src/interfaces/PokemonProfile.interface';
-import HttpStatusCode from 'src/constants/http-statuses.enums';
-import { HttpResponseMessage } from 'src/constants/http-response-messages.enums';
-import { IStorePokemonResponse } from 'src/interfaces/Store.interface';
+import { IPokemonProfile } from '../interfaces/pokemon-profile.interface';
+import HttpStatusCode from '../constants/http-statuses.enums';
+import { HttpResponseMessage } from '../constants/http-response-messages.enums';
+import { IStorePokemonResponse } from '../interfaces/pokemon-store.interface';
 import {
   AddPokemonToStoreDto,
   DeletePokemonByPokemonStoreIdFromStoreDto,
-} from './dto/Store.dto';
+} from './dto/pokemon-store.dto';
 
 @Controller('store')
 export class PokemonStoreController {

@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { PokemonProfileService } from 'src/pokemon-profile/pokemon-profile.service';
+import { PokemonProfileService } from '../pokemon-profile/pokemon-profile.service';
 import { PokemonProfileDto } from './dto/pokemon-profile.dto';
 
 @Controller('pokemon-profile')

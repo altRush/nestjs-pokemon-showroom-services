@@ -1,6 +1,6 @@
 import { ArrayMinSize, IsArray, IsNumber, IsString } from 'class-validator';
-import { IDeletePokemonByPokemonStoreIdRequest } from '../../interfaces/Store.interface';
-import { IPokemonProfile } from 'src/interfaces/PokemonProfile.interface';
+import { IDeletePokemonByPokemonStoreIdRequest } from '../../interfaces/pokemon-store.interface';
+import { IPokemonProfile } from '../../interfaces/pokemon-profile.interface';
 
 export class DeletePokemonByPokemonStoreIdFromStoreDto
   implements IDeletePokemonByPokemonStoreIdRequest
