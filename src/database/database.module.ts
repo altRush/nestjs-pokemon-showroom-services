@@ -1,21 +1,20 @@
 import { Module } from '@nestjs/common';
-import { MongoClient, Db } from 'mongodb';
+import { Pool } from 'pg';
+import { PG_CONNECTION } from 'src/constants';
 
 const databaseConnectionProvider = {
-  provide: 'DATABASE_CONNECTION',
-  useFactory: async (): Promise<Db> => {
-    try {
-      const client = await MongoClient.connect('mongodb://127.0.0.1');
-
-      return client.db('pokemon-teams');
-    } catch (e) {
-      throw e;
-    }
-  },
+  provide: PG_CONNECTION,
+  useValue: new Pool({
+    user: process.env.DB_USERNAME,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: parseInt(process.env.DB_PORT),
+  }),
 };
 
 @Module({
   providers: [databaseConnectionProvider],
-  exports: ['DATABASE_CONNECTION'],
+  exports: [PG_CONNECTION],
 })
 export class DatabaseModule {}
