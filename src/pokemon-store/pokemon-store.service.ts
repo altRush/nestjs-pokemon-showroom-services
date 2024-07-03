@@ -76,10 +76,6 @@ export class PokemonStoreService {
   deletePokemonByPokemonStoreIdFromStore = async (
     pokemonStoreId: number,
   ): Promise<IStorePokemonResponse> => {
-    if (typeof pokemonStoreId !== 'number') {
-      throw new Error(HttpResponseMessage.DELETE_FAILED_NAN);
-    }
-
     const results = await this.db.query(
       `DELETE from stored_pokemons WHERE pokemon_store_id = ${pokemonStoreId}`,
     );

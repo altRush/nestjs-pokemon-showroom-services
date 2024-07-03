@@ -10,10 +10,8 @@ import { PokemonStoreService } from './pokemon-store.service';
 import { IPokemonProfile } from 'src/interfaces/PokemonProfile.interface';
 import HttpStatusCode from 'src/constants/http-statuses.enums';
 import { HttpResponseMessage } from 'src/constants/http-response-messages.enums';
-import {
-  IDeletePokemonByPokemonStoreIdRequest,
-  IStorePokemonResponse,
-} from 'src/interfaces/Store.interface';
+import { IStorePokemonResponse } from 'src/interfaces/Store.interface';
+import { deletePokemonByPokemonStoreIdFromStoreDto } from './dto/DeletePokemonByPokemonStoreId.dto';
 
 @Controller('store')
 export class PokemonStoreController {
@@ -37,7 +35,7 @@ export class PokemonStoreController {
 
   @Delete('')
   async deletePokemonByPokemonStoreIdFromStore(
-    @Body() { pokemonStoreId }: IDeletePokemonByPokemonStoreIdRequest,
+    @Body() { pokemonStoreId }: deletePokemonByPokemonStoreIdFromStoreDto,
   ): Promise<IStorePokemonResponse> {
     try {
       if (!pokemonStoreId) {
@@ -65,11 +63,6 @@ export class PokemonStoreController {
             throw new HttpException(
               HttpResponseMessage.DELETE_NOT_FOUND,
               HttpStatusCode.NOT_FOUND,
-            );
-          case HttpResponseMessage.DELETE_FAILED_NAN:
-            throw new HttpException(
-              HttpResponseMessage.DELETE_FAILED_NAN,
-              HttpStatusCode.BAD_REQUEST,
             );
           default:
             throw new HttpException(
