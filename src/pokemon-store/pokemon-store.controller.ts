@@ -5,13 +5,17 @@ import {
   Get,
   HttpException,
   Param,
+  Post,
 } from '@nestjs/common';
 import { PokemonStoreService } from './pokemon-store.service';
 import { IPokemonProfile } from 'src/interfaces/PokemonProfile.interface';
 import HttpStatusCode from 'src/constants/http-statuses.enums';
 import { HttpResponseMessage } from 'src/constants/http-response-messages.enums';
 import { IStorePokemonResponse } from 'src/interfaces/Store.interface';
-import { deletePokemonByPokemonStoreIdFromStoreDto } from './dto/DeletePokemonByPokemonStoreId.dto';
+import {
+  AddPokemonToStoreDto,
+  DeletePokemonByPokemonStoreIdFromStoreDto,
+} from './dto/Store.dto';
 
 @Controller('store')
 export class PokemonStoreController {
@@ -33,9 +37,20 @@ export class PokemonStoreController {
     return response;
   }
 
+  @Post('')
+  async addPokemonToStore(
+    @Body() body: AddPokemonToStoreDto,
+  ): Promise<IStorePokemonResponse> {
+    try {
+      const response = await this.pokemonStoreService.addPokemonToStore(body);
+
+      return response;
+    } catch (e: unknown) {}
+  }
+
   @Delete('')
   async deletePokemonByPokemonStoreIdFromStore(
-    @Body() { pokemonStoreId }: deletePokemonByPokemonStoreIdFromStoreDto,
+    @Body() { pokemonStoreId }: DeletePokemonByPokemonStoreIdFromStoreDto,
   ): Promise<IStorePokemonResponse> {
     try {
       if (!pokemonStoreId) {
