@@ -53,7 +53,7 @@ export class PokemonStoreService {
   addPokemonToStore = async (
     pokemonProfile: IPokemonProfile,
   ): Promise<IStorePokemonResponse> => {
-    const successResponse = {
+    let successResponse: IStorePokemonResponse = {
       success: false,
     };
     const { name, url, sprite, types } = pokemonProfile;
@@ -67,7 +67,10 @@ export class PokemonStoreService {
       `);
 
     if (command === 'INSERT' && rowCount) {
-      successResponse.success = true;
+      successResponse = {
+        success: true,
+        message: HttpResponseMessage.ADD_SUCCESS,
+      };
     }
 
     return successResponse;
