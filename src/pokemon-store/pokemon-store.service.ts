@@ -6,7 +6,10 @@ import {
 } from '@nestjs/common';
 import { ClientBase } from 'pg';
 import { HttpResponseMessage } from '../constants/http-response-messages.enums';
-import { IPokemonProfile } from '../interfaces/pokemon-profile.interface';
+import {
+  IPokemonProfile,
+  IPokemonProfileWithTypes,
+} from '../interfaces/pokemon-profile.interface';
 import { IStorePokemonResponse } from '../interfaces/pokemon-store.interface';
 import { UtilsService } from '../utils/utils.service';
 
@@ -22,7 +25,7 @@ export class PokemonStoreService {
 
   getPokemonByNameFromStore = async (
     pokemonName: string,
-  ): Promise<IPokemonProfile | null> => {
+  ): Promise<IPokemonProfileWithTypes | null> => {
     const { rowCount, rows } = await this.db.query(
       `SELECT name, url, sprite, types
       FROM stored_pokemons
@@ -42,7 +45,7 @@ export class PokemonStoreService {
       `select t.* from unnest(array[${sqlPokemonTypesArray}]) type_name_s left join types t on t.type_name = type_name_s`,
     );
 
-    const pokemonProfile = {
+    const pokemonProfile: IPokemonProfileWithTypes = {
       ...pokemon,
       types: pokemonTypes,
     };

@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { PokemonStoreService } from './pokemon-store.service';
-import { IPokemonProfile } from '../interfaces/pokemon-profile.interface';
+import { IPokemonProfileWithTypes } from '../interfaces/pokemon-profile.interface';
 import HttpStatusCode from '../constants/http-statuses.enums';
 import { HttpResponseMessage } from '../constants/http-response-messages.enums';
 import { IStorePokemonResponse } from '../interfaces/pokemon-store.interface';
@@ -24,7 +24,7 @@ export class PokemonStoreController {
   @Get(':name')
   async getPokemonByNameFromStore(
     @Param('name') name: string,
-  ): Promise<IPokemonProfile> {
+  ): Promise<IPokemonProfileWithTypes> {
     const response =
       await this.pokemonStoreService.getPokemonByNameFromStore(name);
     if (!response) {
