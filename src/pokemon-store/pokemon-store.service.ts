@@ -23,13 +23,13 @@ export class PokemonStoreService {
     private utils: UtilsService,
   ) {}
 
-  getPokemonByNameFromStore = async (
-    pokemonName: string,
+  getPokemonByIdFromStore = async (
+    pokemonId: string,
   ): Promise<IPokemonProfileWithTypes | null> => {
     const { rowCount, rows } = await this.db.query(
       `SELECT name, url, sprite, types
       FROM stored_pokemons
-      WHERE name = '${pokemonName}'`,
+      WHERE pokemon_store_id = '${pokemonId}'`,
     );
 
     if (!rowCount) {

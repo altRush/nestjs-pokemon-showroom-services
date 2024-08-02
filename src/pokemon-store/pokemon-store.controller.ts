@@ -21,12 +21,11 @@ import {
 export class PokemonStoreController {
   constructor(private readonly pokemonStoreService: PokemonStoreService) {}
 
-  @Get(':name')
-  async getPokemonByNameFromStore(
-    @Param('name') name: string,
+  @Get(':id')
+  async getPokemonByIdFromStore(
+    @Param('id') id: string,
   ): Promise<IPokemonProfileWithTypes> {
-    const response =
-      await this.pokemonStoreService.getPokemonByNameFromStore(name);
+    const response = await this.pokemonStoreService.getPokemonByIdFromStore(id);
     if (!response) {
       throw new HttpException(
         HttpResponseMessage.GET_NOT_FOUND,
