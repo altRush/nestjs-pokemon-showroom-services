@@ -9,9 +9,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-  @Get('get-stored-pokemons')
-  getStoredPokemons(): any {
-    return this.appService.getPokemons();
-  }
 }
